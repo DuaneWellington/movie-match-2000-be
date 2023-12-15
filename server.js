@@ -23,7 +23,7 @@ const app = express();
 ////////////////////////////////
 // create a test route
 app.get("/", (req, res) => {
-    res.send("hello world");
+    res.send("DERP a DERP");
 });
 app.use('/api', apiRouter);
 
