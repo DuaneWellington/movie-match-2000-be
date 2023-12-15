@@ -2,11 +2,19 @@
 const express = require('express');
 const axios = require('axios');
 const router = express.Router();
-const OMDB_API_KEY = 'cc0df2f8';
-const MOVIE_ID = 'tt3896198';
+require('dotenv').config();
+// const MOVIE_ID = 'tt3896198';
+
 router.get('/movie', async (req, res) => {
   try {
-    const response = await axios.get(`http://www.omdbapi.com/?i=${MOVIE_ID}&apikey=${OMDB_API_KEY}`);
+
+    const { omdbID } = req.query;
+    if (!omdbID) {
+        return res.status(400).json({ error: 'Missing movie ID in query parameters'});
+    }
+    
+    const apiKey = process.env.OMDB_API_KEY;
+    const response = await axios.get(`http://www.omdbapi.com/?i=${omdbID}&apikey=${apiKey}`);
     res.json(response.data);
   } catch (error) {
     console.error('Error fetching movie data:', error);

@@ -1,4 +1,5 @@
-/ controllers/movieController.js
+// controllers/movieController.js
+
 const axios = require('axios');
 const OMDB_API_KEY = 'cc0df2f8';
 const MOVIE_ID = 'tt3896198';
